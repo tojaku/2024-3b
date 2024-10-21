@@ -1,0 +1,62 @@
+.boja {
+    color:azure;
+    background-color: blueviolet;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.vrsta1 {
+    background-color: coral;
+    padding: 5px;
+    border: 1px solid gray;
+    color:beige;
+    text-decoration: none;
+}
+
+.vrsta1:hover {
+    background-color: crimson;
+}
+
+.vrsta2 {
+    padding: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color:chocolate;
+    font-weight: bold;
+}
+
+.vrsta2:hover {
+    text-decoration: underline;
+}
+
+a {
+    line-height: 200%;
+}
+
+.uzrecica {
+    font-family: cursive;
+    font-size: xx-large;
+    margin-left: 50px;
+    padding: 10px;
+    border-left: 2px solid royalblue;
+}
+
+.uzrecica:hover {
+    background-color: royalblue;
+    color:azure;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: blueviolet;
+    color: white;
+    padding: 3px;
+}
+
+td {
+    padding: 3px;
+}

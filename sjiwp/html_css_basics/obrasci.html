@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrasci</title>
+</head>
+
+<body>
+    <form>
+        <p>
+            <label>Ime i prezime:</label>
+            <input type="text" name="name" placeholder="Unesite ime i prezime" />
+        </p>
+        <p>
+            <label>E-mail adresa</label>
+            <input type="email" name="email" placeholder="Unesite e-mail adresu" />
+        </p>
+        <p>
+            <label for="age">Starost</label>
+            <input type="number" name="age" placeholder="Unesite koliko imate godina" min="13" max="120" size="20" />
+        </p>
+        <p>
+            <label for="dob">
+                Datum rođenja
+            </label>
+            <input type="date" name="dob" placeholder="Unesite svoj datum rođenja" />
+        </p>
+        <p>
+            <label for="sex">Spol</label>
+            <select name="sex">
+                <option value="m">Muško</option>
+                <option value="f">Žensko</option>
+                <option value="x">Ne želim reći</option>
+            </select>
+        </p>
+        <p>
+            <label>Vaša biografija</label><br/>
+            <textarea name="bio" rows="10" cols="50" maxlength="1000"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Potvrdi" />
+        </p>
+    </form>
+
+</body>
+
+</html>
