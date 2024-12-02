@@ -12,8 +12,15 @@ router.get("/signup", function (req, res, next) {
 });
 
 router.post("/signup", function (req, res, next) {
-  console.log(req.body);
-  
+  const result = signupSchema.validate(req.body);
+
+  if (result.error) {
+    let firstError = result.error.details[0];
+    let errorField = firstError.context.label;
+    res.render("users/signup", { error: errorField });
+    return;
+  }
+
   res.redirect("/users/signup");
 });
 

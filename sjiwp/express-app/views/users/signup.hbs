@@ -16,3 +16,10 @@
     <input type="submit" value="Potvrdi" />
     <input type="reset" value="Poništi" />
 </form>
+
+{{#if error}}
+<p>Dogodila se greška:</p>
+<ul>
+    <li>{{error}}</li>
+</ul>
+{{/if}}
