@@ -4,6 +4,7 @@ var db = require("../services/db");
 var bcrypt = require("bcrypt");
 
 const signupSchema = require("../schemas/signup");
+const signinSchema = require("../schemas/signin");
 
 router.get('/', function (req, res, next) {
   res.send('respond with a resource');
@@ -17,7 +18,7 @@ router.post("/signup", async function (req, res, next) {
   const result = signupSchema.validate(req.body);
 
   if (result.error) {
-    res.render("users/signup", { error: true });
+    res.render("users/signup", { error_validation: true });
     return;
   }
 
@@ -28,17 +29,52 @@ router.post("/signup", async function (req, res, next) {
     const stmt = await conn.prepare(query);
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const result = await stmt.execute([req.body.name, req.body.email, hashedPassword]);
-    console.log(result);
-
-    res.redirect("/users/signup");
+    res.render("users/signup", { success: true });
   } catch (error) {
-    console.log(error);
-
+    res.render("users/signup", { error_database: true });
   } finally {
     conn.release();
   }
+});
 
+router.get("/signin", function (req, res, next) {
+  res.render("users/signin");
+});
 
+router.post("/signin", async function (req, res, next) {
+  const result = signinSchema.validate(req.body);
+
+  if (result.error) {
+    res.render("users/signin", { error_validation: true });
+    return;
+  }
+
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+  let conn;
+  try {
+    conn = await db.getConnection();
+    const query = "SELECT password_hash FROM users WHERE email = ?";
+    const stmt = await conn.prepare(query);
+    const result = await stmt.execute([req.body.email]);
+    console.log(result);
+
+    if (result.length === 0) {
+      res.render("users/signin", { unknown_user: true });
+      return;
+    }
+
+    if (result[0].password_hash !== hashedPassword) {
+      res.render("users/signin", { invalid_password: true });
+      return;
+    }
+
+    res.render("users/signin", { success: true });
+  } catch (error) {
+    res.render("users/signin", { error_database: true });
+  } finally {
+    conn.release();
+  }
 
 });
 
