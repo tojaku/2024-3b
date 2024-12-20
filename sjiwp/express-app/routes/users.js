@@ -49,25 +49,31 @@ router.post("/signin", async function (req, res, next) {
     return;
   }
 
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
   let conn;
   try {
     conn = await db.getConnection();
     const query = "SELECT password_hash FROM users WHERE email = ?";
     const stmt = await conn.prepare(query);
     const result = await stmt.execute([req.body.email]);
-    console.log(result);
 
     if (result.length === 0) {
       res.render("users/signin", { unknown_user: true });
       return;
     }
 
-    if (result[0].password_hash !== hashedPassword) {
+    const hashedPasswordDb = result[0].password_hash;
+    const compareResult = await bcrypt.compare(req.body.password, hashedPasswordDb);
+
+    if (!compareResult) {
       res.render("users/signin", { invalid_password: true });
       return;
     }
+
+    res.cookie("express-app-user", req.body.email, {
+      maxAge: 1209600000,
+      httpOnly: true,
+      sameSite: "strict"
+    });
 
     res.render("users/signin", { success: true });
   } catch (error) {
@@ -75,7 +81,11 @@ router.post("/signin", async function (req, res, next) {
   } finally {
     conn.release();
   }
+});
 
+router.get("/signout", function (req, res, next) {
+  res.clearCookie("express-app-user");
+  res.redirect("/");
 });
 
 module.exports = router;
