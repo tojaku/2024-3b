@@ -75,7 +75,7 @@ router.post("/signin", async function (req, res, next) {
       sameSite: "strict"
     });
 
-    res.render("users/signin", { success: true });
+    res.redirect("/");
   } catch (error) {
     res.render("users/signin", { error_database: true });
   } finally {

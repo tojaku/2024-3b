@@ -6,8 +6,10 @@ const authMiddleware = (req, res, next) => {
     
     if (email) {
         req.userEmail = email;
+        res.locals.userEmail = email;
     } else {
         req.userEmail = null;
+        res.locals.userEmail = null;
     }
 
     next();
