@@ -53,7 +53,10 @@ class _MojObrazacState extends State<MojObrazac> {
     String ime = imeCtrl.text;
     String prezime = prezimeCtrl.text;
 
-    debugPrint("Ime: $ime Prezime: $prezime");
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PrikazPodataka(ime: ime, prezime: prezime)));
 
     imeCtrl.text = "";
     prezimeCtrl.text = "";
@@ -85,6 +88,9 @@ class _MojObrazacState extends State<MojObrazac> {
             controller: prezimeCtrl,
             decoration: const InputDecoration(
                 labelText: "Prezime", border: OutlineInputBorder()),
+            onSubmitted: (value) {
+              _sendData();
+            },
           ),
           const SizedBox(
             height: 16,
@@ -129,7 +135,14 @@ class _PrikazPodatakaState extends State<PrikazPodataka> {
               "Ime: ${widget.ime}",
               style: const TextStyle(fontSize: 22),
             ),
-            // Ovdje smo stali ...
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Nazad"))
           ],
         ),
       ),
