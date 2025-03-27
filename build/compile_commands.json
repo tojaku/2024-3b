@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/user/Projects/2024-3b/build",
+  "command": "/usr/bin/g++ -DAPPLICATION_ID=\\\"com.example.test_flutter\\\" -I/home/user/Projects/2024-3b/pmu/test_flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -g -Wall -Werror -pthread -o CMakeFiles/test_flutter.dir/main.cc.o -c /home/user/Projects/2024-3b/pmu/test_flutter/linux/main.cc",
+  "file": "/home/user/Projects/2024-3b/pmu/test_flutter/linux/main.cc"
+},
+{
+  "directory": "/home/user/Projects/2024-3b/build",
+  "command": "/usr/bin/g++ -DAPPLICATION_ID=\\\"com.example.test_flutter\\\" -I/home/user/Projects/2024-3b/pmu/test_flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -g -Wall -Werror -pthread -o CMakeFiles/test_flutter.dir/my_application.cc.o -c /home/user/Projects/2024-3b/pmu/test_flutter/linux/my_application.cc",
+  "file": "/home/user/Projects/2024-3b/pmu/test_flutter/linux/my_application.cc"
+},
+{
+  "directory": "/home/user/Projects/2024-3b/build",
+  "command": "/usr/bin/g++ -DAPPLICATION_ID=\\\"com.example.test_flutter\\\" -I/home/user/Projects/2024-3b/pmu/test_flutter/linux/flutter/ephemeral -isystem /usr/include/gtk-3.0 -isystem /usr/include/pango-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/x86_64-linux-gnu/glib-2.0/include -isystem /usr/include/harfbuzz -isystem /usr/include/freetype2 -isystem /usr/include/libpng16 -isystem /usr/include/libmount -isystem /usr/include/blkid -isystem /usr/include/fribidi -isystem /usr/include/cairo -isystem /usr/include/pixman-1 -isystem /usr/include/gdk-pixbuf-2.0 -isystem /usr/include/gio-unix-2.0 -isystem /usr/include/atk-1.0 -isystem /usr/include/at-spi2-atk/2.0 -isystem /usr/include/at-spi-2.0 -isystem /usr/include/dbus-1.0 -isystem /usr/lib/x86_64-linux-gnu/dbus-1.0/include -g -Wall -Werror -pthread -o CMakeFiles/test_flutter.dir/flutter/generated_plugin_registrant.cc.o -c /home/user/Projects/2024-3b/pmu/test_flutter/linux/flutter/generated_plugin_registrant.cc",
+  "file": "/home/user/Projects/2024-3b/pmu/test_flutter/linux/flutter/generated_plugin_registrant.cc"
+}
+]

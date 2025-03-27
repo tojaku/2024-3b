@@ -1,0 +1,14 @@
+/home/user/Projects/2024-3b/build/CMakeFiles/test_flutter.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/edit_cache.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/rebuild_cache.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/list_install_components.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/install.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/install/local.dir
+/home/user/Projects/2024-3b/build/CMakeFiles/install/strip.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/flutter_assemble.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/edit_cache.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/rebuild_cache.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/list_install_components.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/install.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/install/local.dir
+/home/user/Projects/2024-3b/build/flutter/CMakeFiles/install/strip.dir
