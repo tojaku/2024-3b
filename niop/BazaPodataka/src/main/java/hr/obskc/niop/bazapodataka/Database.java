@@ -6,24 +6,24 @@ import java.sql.SQLException;
 
 public class Database {
 
-    private static Database _instance;
+    private static Database instance;
 
-    private final String URL = "jdbc:sqlite:mydb.db";
+    private final String url = "jdbc:sqlite:mydb.db";
     private Connection connection = null;
 
     private Database() {
         try {
-            this.connection = DriverManager.getConnection(URL);
+            connection = DriverManager.getConnection(url);
         } catch (SQLException ex) {
             System.err.println("Greška prilikom spajanja na bazu podataka!");
         }
     }
 
     public static Database getInstance() {
-        if (_instance == null) {
-            _instance = new Database();
+        if (instance == null) {
+            instance = new Database();
         }
-        return _instance;
+        return instance;
     }
     
     public Connection getConnection() {
