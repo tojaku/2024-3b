@@ -26,7 +26,24 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        topMenuBar = new javax.swing.JMenuBar();
+        userMenu = new javax.swing.JMenu();
+        registerMenuItem = new javax.swing.JMenuItem();
+        loginMenuItem = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        userMenu.setText("Korisnik");
+
+        registerMenuItem.setText("Registracija");
+        userMenu.add(registerMenuItem);
+
+        loginMenuItem.setText("Prijava");
+        userMenu.add(loginMenuItem);
+
+        topMenuBar.add(userMenu);
+
+        setJMenuBar(topMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -36,7 +53,7 @@ public class Start extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 276, Short.MAX_VALUE)
         );
 
         pack();
@@ -78,5 +95,9 @@ public class Start extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JMenuItem registerMenuItem;
+    private javax.swing.JMenuBar topMenuBar;
+    private javax.swing.JMenu userMenu;
     // End of variables declaration//GEN-END:variables
 }

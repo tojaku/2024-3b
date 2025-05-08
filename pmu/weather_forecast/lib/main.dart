@@ -30,7 +30,7 @@ class _WeatherPageState extends State<WeatherPage> {
   String _description = "";
 
   Future<void> _fetchWeather() async {
-    const apiKey = "...";
+    const apiKey = "ebd482045ea732a968280ba1f4712695";
 
     final response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?q=$_city&appid=$apiKey&units=metric'));
