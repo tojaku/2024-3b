@@ -4,17 +4,32 @@
  */
 package hr.obskc.niop.bazapodataka;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author user
  */
 public class Start extends javax.swing.JFrame {
+    
+    public static final User USER = new User();
 
     /**
      * Creates new form Start
      */
     public Start() {
         initComponents();
+        
+        // deklaracija i inicijalizacija svih dostupnih panela
+        WelcomePanel welcomePanel = new WelcomePanel();
+        LoginPanel loginPanel = new LoginPanel();
+        RegisterPanel registerPanel = new RegisterPanel();
+        
+        // dodavanje svih panela u main container
+        mainContainer.add(welcomePanel, "welcomePanel");
+        mainContainer.add(loginPanel, "loginPanel");
+        mainContainer.add(registerPanel, "registerPanel");
+        
     }
 
     /**
@@ -26,19 +41,33 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainContainer = new javax.swing.JPanel();
         topMenuBar = new javax.swing.JMenuBar();
         userMenu = new javax.swing.JMenu();
         registerMenuItem = new javax.swing.JMenuItem();
         loginMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 400));
+
+        mainContainer.setLayout(new java.awt.CardLayout());
 
         userMenu.setText("Korisnik");
 
         registerMenuItem.setText("Registracija");
+        registerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerMenuItemActionPerformed(evt);
+            }
+        });
         userMenu.add(registerMenuItem);
 
         loginMenuItem.setText("Prijava");
+        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginMenuItemActionPerformed(evt);
+            }
+        });
         userMenu.add(loginMenuItem);
 
         topMenuBar.add(userMenu);
@@ -49,15 +78,35 @@ public class Start extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerMenuItemActionPerformed
+        CardLayout cardLayout = (CardLayout) mainContainer.getLayout();
+        cardLayout.show(mainContainer, "registerPanel");
+        mainContainer.revalidate();
+        mainContainer.repaint();
+    }//GEN-LAST:event_registerMenuItemActionPerformed
+
+    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
+        CardLayout cardLayout = (CardLayout) mainContainer.getLayout();
+        cardLayout.show(mainContainer, "loginPanel");
+        mainContainer.revalidate();
+        mainContainer.repaint();
+    }//GEN-LAST:event_loginMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,6 +145,7 @@ public class Start extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JPanel mainContainer;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuBar topMenuBar;
     private javax.swing.JMenu userMenu;

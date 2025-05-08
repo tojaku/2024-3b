@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class RegisterPanel extends javax.swing.JPanel {
+public class LoginPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RegisterPanel
+     * Creates new form LoginPanel
      */
-    public RegisterPanel() {
+    public LoginPanel() {
         initComponents();
     }
 
@@ -29,29 +29,21 @@ public class RegisterPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         topLabel = new javax.swing.JLabel();
-        nameLabel = new javax.swing.JLabel();
         emailAddressLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
-        nameTextField = new javax.swing.JTextField();
         emailAddressTextField = new javax.swing.JTextField();
-        passwordConfirmationLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        passwordConfirmationField = new javax.swing.JPasswordField();
         confirmButton = new javax.swing.JButton();
 
         topLabel.setBackground(new java.awt.Color(255, 255, 153));
         topLabel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        topLabel.setText("Registracija korisnika");
+        topLabel.setText("Prijava korisnika");
         topLabel.setOpaque(true);
-
-        nameLabel.setText("Ime");
 
         emailAddressLabel.setText("E-mail adresa");
 
         passwordLabel.setText("Zaporka");
-
-        passwordConfirmationLabel.setText("Potvrda zaporke");
 
         confirmButton.setBackground(new java.awt.Color(204, 255, 153));
         confirmButton.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -69,20 +61,16 @@ public class RegisterPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(topLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(passwordConfirmationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(emailAddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameTextField)
                             .addComponent(emailAddressTextField)
-                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passwordConfirmationField))))
+                            .addComponent(passwordField, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -92,10 +80,6 @@ public class RegisterPanel extends javax.swing.JPanel {
                 .addComponent(topLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailAddressLabel)
                     .addComponent(emailAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -103,35 +87,23 @@ public class RegisterPanel extends javax.swing.JPanel {
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordConfirmationLabel)
-                    .addComponent(passwordConfirmationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(confirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         String email = emailAddressTextField.getText();
-        String name = nameTextField.getText();
         String password = new String(passwordField.getPassword());
-        String passwordConfirmation = new String(passwordConfirmationField.getPassword());
-
-        if (!password.equals(passwordConfirmation)) {
-            JOptionPane.showMessageDialog(this, "Dogodila se greška prilikom registracije, zaporke se ne podudaraju.", "Greška registracije", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         User user = Start.USER;
-        boolean success = user.register(email, password, name);
+        boolean success = user.login(email, password);
         if (success) {
-            System.out.println("Korisnik je uspješno registriran!");
-            JOptionPane.showMessageDialog(this, "Uspješno ste se registrirali.", "Uspješna registracija", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Korisnik je uspješno prijavljen!");
+            JOptionPane.showMessageDialog(this, "Uspješno ste se prijavili.", "Uspješna prijava", JOptionPane.INFORMATION_MESSAGE);
             // TODO: preusmjeri na početni panel
         } else {
-            System.out.println("Korisnik nije uspješno registriran!");
-            JOptionPane.showMessageDialog(this, "Dogodila se greška prilikom registracije, provjerite svoje podatke.", "Greška registracije", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Korisnik nije uspješno prijavljen!");
+            JOptionPane.showMessageDialog(this, "Dogodila se greška prilikom prijave, provjerite e-mail adresu i/ili zaporku.", "Greška prijave", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
@@ -140,10 +112,6 @@ public class RegisterPanel extends javax.swing.JPanel {
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel emailAddressLabel;
     private javax.swing.JTextField emailAddressTextField;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField nameTextField;
-    private javax.swing.JPasswordField passwordConfirmationField;
-    private javax.swing.JLabel passwordConfirmationLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel topLabel;

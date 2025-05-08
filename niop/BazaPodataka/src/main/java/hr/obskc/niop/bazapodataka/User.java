@@ -71,5 +71,49 @@ public class User {
             return false;
         }
     }
+    
+    public boolean login(String email, String password) {
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        if (!emailValidator.isValid(email)) {
+            System.err.println("E-mail adresa nije u valjanom formatu!");
+            return false;
+        }
+
+        RegexValidator passwordValidator = new RegexValidator("^.{6,}$");
+        if (!passwordValidator.isValid(password)) {
+            System.err.println("Zaporka nije u valjanom formatu!");
+            return false;
+        }
+        
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            String query = "SELECT * FROM users WHERE email = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                int id = result.getInt("id");
+                String passwordHash = result.getString("password");
+                String name = result.getString("name");
+                
+                boolean checkPassword = BCrypt.checkpw(password, passwordHash);
+                if (checkPassword) {
+                    this.id = id;
+                    this.name = name;
+                    this.email = email;
+                    return true;
+                } else {
+                    System.err.println("Pogrešna zaporka korisnika!");
+                    return false;
+                }
+            } else {
+                System.err.println("Pogrešna e-mail adresa korisnika!");
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.err.println("Greška prilikom spremanja novog korisnika u bazu!");
+            return false;
+        }
+    }
 
 }
