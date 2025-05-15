@@ -24,11 +24,13 @@ public class Start extends javax.swing.JFrame {
         WelcomePanel welcomePanel = new WelcomePanel();
         LoginPanel loginPanel = new LoginPanel();
         RegisterPanel registerPanel = new RegisterPanel();
+        SubmitEssayPanel submitEssayPanel = new SubmitEssayPanel();
         
         // dodavanje svih panela u main container
         mainContainer.add(welcomePanel, "welcomePanel");
         mainContainer.add(loginPanel, "loginPanel");
         mainContainer.add(registerPanel, "registerPanel");
+        mainContainer.add(submitEssayPanel, "submitEssayPanel");
         
     }
 
@@ -46,6 +48,8 @@ public class Start extends javax.swing.JFrame {
         userMenu = new javax.swing.JMenu();
         registerMenuItem = new javax.swing.JMenuItem();
         loginMenuItem = new javax.swing.JMenuItem();
+        optionsMenu = new javax.swing.JMenu();
+        submitEssayMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
@@ -71,6 +75,18 @@ public class Start extends javax.swing.JFrame {
         userMenu.add(loginMenuItem);
 
         topMenuBar.add(userMenu);
+
+        optionsMenu.setText("Mogućnosti");
+
+        submitEssayMenuItem.setText("Prijava završnog rada");
+        submitEssayMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitEssayMenuItemActionPerformed(evt);
+            }
+        });
+        optionsMenu.add(submitEssayMenuItem);
+
+        topMenuBar.add(optionsMenu);
 
         setJMenuBar(topMenuBar);
 
@@ -107,6 +123,13 @@ public class Start extends javax.swing.JFrame {
         mainContainer.revalidate();
         mainContainer.repaint();
     }//GEN-LAST:event_loginMenuItemActionPerformed
+
+    private void submitEssayMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitEssayMenuItemActionPerformed
+        CardLayout cardLayout = (CardLayout) mainContainer.getLayout();
+        cardLayout.show(mainContainer, "submitEssayPanel");
+        mainContainer.revalidate();
+        mainContainer.repaint();
+    }//GEN-LAST:event_submitEssayMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,7 +169,9 @@ public class Start extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JPanel mainContainer;
+    private javax.swing.JMenu optionsMenu;
     private javax.swing.JMenuItem registerMenuItem;
+    private javax.swing.JMenuItem submitEssayMenuItem;
     private javax.swing.JMenuBar topMenuBar;
     private javax.swing.JMenu userMenu;
     // End of variables declaration//GEN-END:variables

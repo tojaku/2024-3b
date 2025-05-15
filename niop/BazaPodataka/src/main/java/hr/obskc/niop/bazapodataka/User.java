@@ -27,6 +27,14 @@ public class User {
     public String getName() {
         return name;
     }
+    
+    public boolean isAuthenticated() {
+        if (this.id != 0 && this.email != null && this.name != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public boolean register(String email, String password, String name) {
         EmailValidator emailValidator = EmailValidator.getInstance();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'env.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,9 +12,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: WeatherPage()
-    );
+    return const MaterialApp(home: WeatherPage());
   }
 }
 
@@ -30,7 +29,7 @@ class _WeatherPageState extends State<WeatherPage> {
   String _description = "";
 
   Future<void> _fetchWeather() async {
-    const apiKey = "...";
+    String apiKey = Env.opmApiKey;
 
     final response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?q=$_city&appid=$apiKey&units=metric'));

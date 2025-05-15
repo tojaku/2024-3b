@@ -7,6 +7,9 @@ environment:
   sdk: '>=3.4.1 <4.0.0'
 
 dependencies:
+  envied: ^0.5.2
+  envied_generator: ^0.5.2
+  build_runner: ^2.4.9
   http: ^1.1.0
   flutter:
     sdk: flutter
