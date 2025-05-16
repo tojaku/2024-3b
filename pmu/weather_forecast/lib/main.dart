@@ -24,9 +24,11 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  String _city = "Tokyo";
+  String _city = "Zagreb";
   String _temp = "";
   String _description = "";
+
+  final TextEditingController _controller = TextEditingController();
 
   Future<void> _fetchWeather() async {
     String apiKey = Env.opmApiKey;
@@ -40,13 +42,25 @@ class _WeatherPageState extends State<WeatherPage> {
         _temp = "${data['main']['temp']} °C";
         _description = data['weather'][0]['description'];
       });
+    } else {
+      setState(() {
+        _temp = "";
+        _description = "Weather not found";
+      });
     }
   }
 
   @override
   void initState() {
     super.initState();
+    _controller.text = _city;
     _fetchWeather();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,17 +70,49 @@ class _WeatherPageState extends State<WeatherPage> {
         title: const Text("Weather App"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _temp.isNotEmpty ? _temp : "Loading...",
-              style: const TextStyle(fontSize: 40),
-            ),
-            Text(_description),
-            ElevatedButton(
-                onPressed: _fetchWeather, child: const Text("Refresh"))
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _controller,
+                decoration: const InputDecoration(
+                    labelText: "Enter city name", border: OutlineInputBorder()),
+                onChanged: (value) {
+                  _city = value;
+                },
+                onSubmitted: (value) {
+                  setState(() {
+                    _city = value;
+                  });
+                  _fetchWeather();
+                },
+              ),
+              const SizedBox(
+                height: 24.0,
+              ),
+              Text(
+                _temp.isNotEmpty ? _temp : "Loading...",
+                style: const TextStyle(fontSize: 40),
+              ),
+              Text(
+                _description,
+                style: const TextStyle(fontSize: 18),
+              ),
+              const SizedBox(
+                height: 24.0,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _city = _controller.text.trim();
+                    });
+                    _fetchWeather();
+                  },
+                  child: const Text("Show Weather"))
+            ],
+          ),
         ),
       ),
     );
