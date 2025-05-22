@@ -5,6 +5,7 @@
 package hr.obskc.niop.bazapodataka;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,12 +26,14 @@ public class Start extends javax.swing.JFrame {
         LoginPanel loginPanel = new LoginPanel();
         RegisterPanel registerPanel = new RegisterPanel();
         SubmitEssayPanel submitEssayPanel = new SubmitEssayPanel();
+        ListEssaysPanel listEssaysPanel = new ListEssaysPanel();
         
         // dodavanje svih panela u main container
         mainContainer.add(welcomePanel, "welcomePanel");
         mainContainer.add(loginPanel, "loginPanel");
         mainContainer.add(registerPanel, "registerPanel");
         mainContainer.add(submitEssayPanel, "submitEssayPanel");
+        mainContainer.add(listEssaysPanel, "listEssaysPanel");
         
     }
 
@@ -50,6 +53,7 @@ public class Start extends javax.swing.JFrame {
         loginMenuItem = new javax.swing.JMenuItem();
         optionsMenu = new javax.swing.JMenu();
         submitEssayMenuItem = new javax.swing.JMenuItem();
+        listSubmissionsMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
@@ -85,6 +89,14 @@ public class Start extends javax.swing.JFrame {
             }
         });
         optionsMenu.add(submitEssayMenuItem);
+
+        listSubmissionsMenuItem.setText("Prikaz prijava");
+        listSubmissionsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listSubmissionsMenuItemActionPerformed(evt);
+            }
+        });
+        optionsMenu.add(listSubmissionsMenuItem);
 
         topMenuBar.add(optionsMenu);
 
@@ -125,11 +137,30 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void submitEssayMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitEssayMenuItemActionPerformed
+        User user = Start.USER;
+        if (!user.isAuthenticated()) {
+            JOptionPane.showMessageDialog(this, "Morate se prijaviti u sustav da pregledali završne radove.", "Greška prijave", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         CardLayout cardLayout = (CardLayout) mainContainer.getLayout();
         cardLayout.show(mainContainer, "submitEssayPanel");
         mainContainer.revalidate();
         mainContainer.repaint();
     }//GEN-LAST:event_submitEssayMenuItemActionPerformed
+
+    private void listSubmissionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listSubmissionsMenuItemActionPerformed
+        User user = Start.USER;
+        if (!user.isAuthenticated()) {
+            JOptionPane.showMessageDialog(this, "Morate se prijaviti u sustav da pregledali završne radove.", "Greška prijave", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        CardLayout cardLayout = (CardLayout) mainContainer.getLayout();
+        cardLayout.show(mainContainer, "listEssaysPanel");
+        mainContainer.revalidate();
+        mainContainer.repaint();
+    }//GEN-LAST:event_listSubmissionsMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +198,7 @@ public class Start extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem listSubmissionsMenuItem;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JPanel mainContainer;
     private javax.swing.JMenu optionsMenu;

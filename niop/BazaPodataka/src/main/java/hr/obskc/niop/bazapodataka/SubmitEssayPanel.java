@@ -6,7 +6,6 @@ package hr.obskc.niop.bazapodataka;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
@@ -123,11 +122,6 @@ public class SubmitEssayPanel extends javax.swing.JPanel {
         }
 
         User user = Start.USER;
-
-        if (!user.isAuthenticated()) {
-            JOptionPane.showMessageDialog(this, "Morate se prijaviti u sustav da biste mogli prijaviti završni rad.", "Greška prijave", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
         try {
             Connection conn = Database.getInstance().getConnection();
